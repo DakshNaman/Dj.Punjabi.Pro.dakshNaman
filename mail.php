@@ -1,21 +1,19 @@
 <?php
-// variable setting
-$name = $_REQUEST['name'];
-$email= $_REQUEST['email'];
-$message= $_REQUEST['message'];
+//get data from form 
+$name = $_POST['name'];
+$email= $_POST['email'];
+$message= $_POST['message'];
 
-//check input fields
-if (empty($name) || empty($email) || empty($message))
-{
-     echo "please fill all the fields";
+$to = "dakshattri98@gmail.com";
+
+$subject = "Mail From Dj punjab";
+$txt ="Name = ". $name . "\r\nEmail = " . $email . "\r\nMessage =" . $message.";
+
+$headers = "From: noreply@Djpunjab.com" . "\r\n" .
+"CC: somebodyelse@example.com";
+if($email!=NULL){
+    mail($to,$subject,$txt,$headers);
 }
-else
-{
-     mail("dakshattri98@gmail.com", "Dj punjab",$message , "from: $name <
-         $email>");
-     echo "<script type='text/javascript'>alert('your message sent successfully')
-             window.history.log(-1);
-     </script>"; 
-}
+//redirect
+header("Location:Thankyou.html");
 ?>
-
